@@ -1,0 +1,26 @@
+{
+    "name": "blackbird/external-resources-loader",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Blackbird Agency",
+            "email": "contact@bird.eu",
+            "homepage": "https://black.bird.eu/"
+        }
+    ],
+    "description": "Easily lazy load scripts and styles by url",
+    "type": "magento2-module",
+    "require": {
+        "php": ">=7.4.0",
+        "magento/framework": "*"
+    },
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Blackbird\\ExternalResourcesLoader\\": ""
+        }
+    }
+}
