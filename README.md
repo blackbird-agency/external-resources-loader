@@ -36,3 +36,17 @@ Promise.all([
     blackbird.loadExternalResource('https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css')
 ]).then(() => /* code which is executed after the style and the lib has loaded */)
 ```
+
+### Tips
+
+The `loadExternalResource` method will load a script or a style depending on the url extension.
+If the url doesn't end by `.js` or `.css`, you could lazy load resource using one of these 2 methods :
+
+- `loadExternalScript` : load resource from a url that provides javascript content
+- `loadExternalStyle` : load resource from a url that provides css content
+
+For instance :
+
+```js
+blackbird.loadExternalScript('<?= $block->getViewFileUrl('js/my-script') ?>')
+```
