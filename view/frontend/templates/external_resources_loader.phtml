@@ -9,70 +9,67 @@ use Magento\Framework\View\Element\Template;
 
 <script>
     'use strict';
-    (function( blackbird ) {
+    (function (blackbird) {
 
-        blackbird.loadExternalScript = async (url) => {
-            return new Promise((resolve, reject) => {
-                const scriptWithSameSrc = document.querySelector(`script[src="${url}"]`);
-                if (scriptWithSameSrc) {
-                    return resolve(scriptWithSameSrc);
-                }
+        const addEventListenerOnElementToLoad = (elementToLoad, source) => new Promise((resolve, reject) => {
+            elementToLoad.addEventListener('load', () => {
+                elementToLoad.dataset.loaded = true;
+                resolve(elementToLoad);
+            })
 
-                const script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.async = true;
-                script.src = url;
-
-                document.head.appendChild(script);
-
-                script.addEventListener('load', () => {
-                    return resolve(script);
-                });
-
-                script.addEventListener('error', () => {
-                    return reject(new Error(`The url : "${url}", failed to load.`));
-                });
+            elementToLoad.addEventListener('error', () => {
+                reject(new Error(`[External resource loader] : The resource "${source}", failed to load.`));
             });
+        });
+
+        blackbird.loadExternalScript = async (source) => {
+            const scriptWithSameSrc = document.querySelector(`script[src="${source}"]`);
+
+            if (scriptWithSameSrc && scriptWithSameSrc.dataset.loaded === 'true') {
+                return scriptWithSameSrc;
+            }
+
+            const script = scriptWithSameSrc ?? document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = source;
+            script.dataset.loaded = false;
+
+            document.head.appendChild(script);
+            await addEventListenerOnElementToLoad(script, source);
+            return script;
         }
 
-        blackbird.loadExternalStyle = async (url) => {
-            return new Promise((resolve, reject) => {
-                const linkWithSameHref = document.querySelector(`link[href="${url}"]`);
-                if (linkWithSameHref) {
-                    return resolve(linkWithSameHref);
-                }
+        blackbird.loadExternalStyle = async (source) => {
+            const linkWithSameHref = document.querySelector(`link[href="${source}"]`);
 
-                const link = document.createElement('link');
-                link.type = 'text/css'
-                link.rel = 'stylesheet';
-                link.href = url;
+            if (linkWithSameHref && linkWithSameHref.dataset.loaded === 'true') {
+                return linkWithSameHref;
+            }
 
-                document.head.prepend(link);
+            const link = linkWithSameHref ?? document.createElement('link');
+            link.type = 'text/css'
+            link.rel = 'stylesheet';
+            link.href = source;
+            link.dataset.loaded = false;
 
-                link.addEventListener('load', () => {
-                    return resolve(link);
-                });
-
-                link.addEventListener('error', () => {
-                    return reject(new Error(`The url : "${url}", failed to load.`));
-                });
-            });
+            document.head.prepend(link);
+            await addEventListenerOnElementToLoad(link, source);
+            return link;
         }
 
-        blackbird.loadExternalResource = async (url) => {
-            return new Promise((resolve, reject) => {
-                const scriptUrlRegex = /\.(js)$/i;
-                const styleUrlRegex = /\.(css)$/i;
+        blackbird.loadExternalResource = (source) => {
+            const scriptUrlRegex = /\.(js)$/i;
+            const styleUrlRegex = /\.(css)$/i;
 
-                if (scriptUrlRegex.test(url)) {
-                    return resolve(blackbird.loadExternalScript(url));
-                } else if (styleUrlRegex.test(url)) {
-                    return resolve(blackbird.loadExternalStyle(url));
-                } else {
-                    return reject(new Error(`The url : "${url}", is not a valid script/style CDN.`));
-                }
-            });
+            if (scriptUrlRegex.test(source)) {
+                return blackbird.loadExternalScript(source);
+            }
+
+            if (styleUrlRegex.test(source)) {
+                return blackbird.loadExternalStyle(source);
+            }
         }
 
-    }( window.blackbird = window.blackbird || {} ));
+    }(window.blackbird = window.blackbird || {}));
 </script>
