@@ -1,4 +1,4 @@
-# External resources loader &nbsp; [![Latest Stable Version](https://img.shields.io/badge/version-1.0.0-pink)](https://packagist.org/packages/blackbird/external-resources-loader) [![License: MIT](https://img.shields.io/github/license/blackbird-agency/external-resources-loader.svg)](./LICENSE)
+# External resources loader &nbsp; [![Latest Stable Version](https://img.shields.io/badge/version-1.0.1-pink)](https://packagist.org/packages/blackbird/external-resources-loader) [![License: MIT](https://img.shields.io/github/license/blackbird-agency/external-resources-loader.svg)](./LICENSE)
 
 This tiny Magento 2 module will allow you to easily lazy load scripts and styles by url.
 
