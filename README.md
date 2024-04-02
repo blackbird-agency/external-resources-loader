@@ -37,7 +37,7 @@ Promise.all([
 ]).then(() => /* code which is executed after the style and the lib has loaded */)
 ```
 
-### Tips
+### Troubleshooting
 
 The `loadExternalResource` method will load a script or a style depending on the url extension.
 If the url doesn't end by `.js` or `.css`, you could lazy load resource using one of these 2 methods :
@@ -48,5 +48,9 @@ If the url doesn't end by `.js` or `.css`, you could lazy load resource using on
 For instance :
 
 ```js
-blackbird.loadExternalScript('<?= $block->getViewFileUrl('js/my-script') ?>')
+blackbird.loadExternalScript("<?= $block->getViewFileUrl('js/my-script') ?>")
 ```
+
+### Back Office
+
+By default, this tool is only enabled on the frontend, but it can also be used in the back office by activating it here: `Stores > Configuration > Advanced > External Resources Loader`.

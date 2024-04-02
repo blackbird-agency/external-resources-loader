@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <block name="blackbird.external.resources.loader"
+                   template="Blackbird_ExternalResourcesLoader::external_resources_loader.phtml"
+                   ifconfig="dev/external_ressources_loader/enable_in_back_office">
+                <arguments>
+                    <argument name="area" xsi:type="string">frontend</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <dev>
+            <external_ressources_loader>
+                <enable_in_back_office>0</enable_in_back_office>
+            </external_ressources_loader>
+        </dev>
+    </default>
+</config>
