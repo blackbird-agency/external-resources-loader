@@ -6,7 +6,7 @@
             <block name="blackbird.external.resources.loader"
                    template="Blackbird_ExternalResourcesLoader::external_resources_loader.phtml">
                 <arguments>
-                    <argument name="nonceProvider">Blackbird\ExternalResourcesLoader\ViewModel\NonceProvider</argument>
+                    <argument name="nonceProvider" xsi:type="object">Blackbird\ExternalResourcesLoader\ViewModel\NonceProvider</argument>
                 </arguments>
             </block>
         </referenceContainer>

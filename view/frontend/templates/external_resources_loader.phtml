@@ -8,7 +8,7 @@ use Magento\Framework\View\Element\Template;
 $nonceViewmodel = $block->getData('nonceProvider');
 ?>
 
-<script <?= $nonceProvider->renderNonceAttribute() ?> >
+<script <?= $nonceViewmodel->renderNonceAttribute() ?> >
     'use strict';
     (function (blackbird) {
 

@@ -1,3 +1,8 @@
+## Version 1.0.5 ##
+*Released the 2024-06-24*
+
+* **Fix** Add xsi:type on layout, correction on variable name in template
+
 ## Version 1.0.4 ##
 *Released the 2024-06-24*
 
