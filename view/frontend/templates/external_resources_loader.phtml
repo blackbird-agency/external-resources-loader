@@ -5,9 +5,10 @@ declare(strict_types=1);
 use Magento\Framework\View\Element\Template;
 
 /** @var $block Template */
+$nonceViewmodel = $block->getData('nonceProvider');
 ?>
 
-<script>
+<script <?= $nonceProvider->renderNonceAttribute() ?> >
     'use strict';
     (function (blackbird) {
 
