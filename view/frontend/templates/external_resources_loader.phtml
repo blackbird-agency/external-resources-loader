@@ -24,7 +24,7 @@ $nonceViewmodel = $block->getData('nonceProvider');
         });
 
         blackbird.loadExternalScript = async (source) => {
-            const scriptWithSameSrc = document.querySelector(`script[src="${source}"]`);
+            const scriptWithSameSrc = document.querySelector(`script[src="${source}"][data-loaded]`);
 
             if (scriptWithSameSrc && scriptWithSameSrc.dataset.loaded === 'true') {
                 return scriptWithSameSrc;
@@ -42,7 +42,7 @@ $nonceViewmodel = $block->getData('nonceProvider');
         }
 
         blackbird.loadExternalStyle = async (source) => {
-            const linkWithSameHref = document.querySelector(`link[href="${source}"]`);
+            const linkWithSameHref = document.querySelector(`link[href="${source}"][data-loaded]`);
 
             if (linkWithSameHref && linkWithSameHref.dataset.loaded === 'true') {
                 return linkWithSameHref;
